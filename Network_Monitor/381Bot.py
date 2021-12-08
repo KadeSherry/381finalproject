@@ -215,6 +215,12 @@ def save_run(incoming_msg):
     response.text = "The show run results have been saved to files."
     return response
 
+def show_version(incoming_msg):
+    response = Response()
+    os.system("robot --outputdir robot_show robot_show.robot")
+    response.text = "The show run results have been saved to files."
+    return response
+
 def check_VPN(incoming_msg):
     response = Response()
     response.text = "Gathering  Information...\n\n"
@@ -292,6 +298,7 @@ bot.add_command("get interface output R2", "This job will get information about 
 bot.add_command("save run", "This will save the output of the show version command into a text file for each router", save_run)
 bot.add_command("get routing protocols", "This job will get the routing protocols and router ID", useless.get_routing_protocol)
 bot.add_command("monitor VPN status", "This job will monitor the VPN and change internal configurations to keep it running", monitor_VPN)
+bot.add_command("show version", "This job will get the show version information from the routers, and output it into the robot_show folder", show_version)
 # Every bot includes a default "/echo" command.  You can remove it, or any
 bot.remove_command("/echo")
 
